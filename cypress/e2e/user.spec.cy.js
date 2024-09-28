@@ -1,15 +1,16 @@
 import userData from '../fixtures/userData.json'
+import LoginPage from '../pages/loginPage'
+import DashboardPage from '../pages/dashboardPage'
+import MenuPage from '../pages/menuPage'
+
+
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
+const menuPage = new MenuPage
 
 describe('Orange HRM Tests', () => {
-
 const selectorsList = {
-  usernameField: "[name='username']",
-  passwordFild: "[name='password']",
-  loginButton: "[type='submit']",
-  sectionTitleTopBar:".oxd-topbar-header-breadcrumb-module",
-  dashboardGrid:".orangehrm-dashboard-grid",
-  wrongCredentialAlert:"[role='alert']",
-  myInfoButton:'[href="/web/index.php/pim/viewMyDetails"]',
+  
   firstNameField:"[name='firstName']",
   lastNameFild:"[name='lastName']",
   genericField:".oxd-input--active",
@@ -18,18 +19,15 @@ const selectorsList = {
   genericSelector:".oxd-select-text-input",
   natinalitySelector:":nth-child(3) > span",
   submitButton:"[type='submit']",
-
 }
-
   it.only('User Info Update - Sucess', () => {
+    loginPage.accessLoginPage()
+    loginPage.loginAnyUser(userData.userSuccess.username, userData.userSuccess.password )
 
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userSuccess.username)
-    cy.get(selectorsList.passwordFild).type(userData.userSuccess.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.location('pathname').should('equal','/web/index.php/dashboard/index')
-    cy.get(selectorsList.dashboardGrid) 
-    cy.get(selectorsList.myInfoButton).click()
+    dashboardPage.checkDashboardPage()
+
+    menuPage.accessMyInfo()
+
     cy.get(selectorsList.firstNameField).clear().type('FirstNameTest')
     cy.get(selectorsList.firstNameField).clear().type('firstName')
     cy.get(selectorsList.genericField).eq(3).clear().type('Employee')
@@ -45,6 +43,7 @@ const selectorsList = {
     cy.get('.oxd-toast-close')
 
   })
+
   it('Login - fail', () => {
     cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userFail.username)
