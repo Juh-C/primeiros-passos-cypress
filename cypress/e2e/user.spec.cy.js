@@ -40,6 +40,7 @@ const selectorsList = {
     cy.get(selectorsList.genericSelector).eq(0).type('select')
     cy.get(selectorsList.natinalitySelector).click()
     cy.get(selectorsList.submitButton).eq(1).click()
+    cy.get('body').should('contain','Successfully updated user')
     cy.get('.oxd-toast-close')
 
   })
