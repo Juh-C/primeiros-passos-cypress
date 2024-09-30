@@ -35,11 +35,11 @@ const selectorsList = {
     cy.get(selectorsList.genericField).eq(5).clear().type('LicenceNumber')
     cy.get(selectorsList.genericField).eq(6).clear().type('2025-03-10')
     cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.genericField).eq(7).clear().type('1983-18-09')
+    cy.get(selectorsList.genericField).eq(9).clear().type('1983-18-09')
     cy.get(selectorsList.dateCloseButton).click()
     cy.get(selectorsList.genericSelector).eq(0).type('select')
     cy.get(selectorsList.natinalitySelector).click()
-    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get(selectorsList.submitButton).eq(1).click()
     cy.get('.oxd-toast-close')
 
   })
