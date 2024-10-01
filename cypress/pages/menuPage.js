@@ -14,7 +14,8 @@ class MenuPage {
         pimButton:'[href="/web/index.php/pim/viewPimModule"]',
         adminButton:'[href="/web/index.php/admin/viewAdminModule"]',
         dashboardButton:'[href="/web/index.php/dashboard/index"]',
-
+    
+        
      }
 
        return selectors
@@ -57,7 +58,6 @@ class MenuPage {
         cy.get(this.accessDashboard().dashboardButton).click()
     }
        
-
 }
 
 export default MenuPage
